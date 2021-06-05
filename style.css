@@ -246,10 +246,8 @@ body .body-wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   font-size: 12px;
   -ms-flex-pack: distribute;
       justify-content: space-around;
@@ -258,21 +256,18 @@ body .body-wrapper {
 }
 
 .section2 .filter-options li ul {
-  max-width: 30%;
+  width: 150px;
   cursor: pointer;
-  padding: 0 10px;
+  padding: 5px 10px;
+  margin: 5px 0;
   text-align: center;
-  border-right: 1px solid white;
-}
-
-.section2 .filter-options li ul:last-child {
-  border: 0;
+  border: 1px solid white;
 }
 
 .section2 .gallery-container .grid-sizer,
 .section2 .gallery-container .wrapper {
   width: 24%;
-  margin: 0 0 2% 1%;
+  margin: 0 0 1% 1%;
 }
 
 .section2 .gallery-container .grid-sizer .glightbox img,

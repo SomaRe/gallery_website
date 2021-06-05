@@ -1,3 +1,4 @@
+var lastClicked = "";
 
 
 var digitalArts = ["digitalArt", "assets/images/digitalArts/digitalArt-", [[12,'.jpg']]];
@@ -7,33 +8,37 @@ var digitalPosters = ["digitalPoster","assets/images/digitalPosters/digitalPoste
 var infoGraphics = ["infoGraphics","assets/images/infographics/infographics-",[[3,'.jpg'],[1,'.gif']]];
 var prints = ["print","assets/images/prints/print-",[[14,".jpg"],[2,".png"]]]
 
-document.getElementById("digitalArtsButton").addEventListener("click", () => {
-  createHtml(...digitalArts);
+document.getElementById("digitalArtsButton").addEventListener("click", (e) => {
+  createHtml(e.target.id,...digitalArts);
+  
 });
 
-document.getElementById("paperDrawnButton").addEventListener("click", () => {
-  createHtml(...paperDrawn);
+document.getElementById("paperDrawnButton").addEventListener("click", (e) => {
+  createHtml(e.target.id,...paperDrawn);
 });
 
-document.getElementById("featuredImagesButton").addEventListener("click", () => {
-  createHtml(...featuredImages);
+document.getElementById("featuredImagesButton").addEventListener("click", (e) => {
+  createHtml(e.target.id,...featuredImages);
 });
 
-document.getElementById("digitalPostersButton").addEventListener("click", () => {
-  createHtml(...digitalPosters);
+document.getElementById("digitalPostersButton").addEventListener("click", (e) => {
+  createHtml(e.target.id,...digitalPosters);
 });
 
-document.getElementById("infoGraphicsButton").addEventListener("click", () => {
-  createHtml(...infoGraphics);
+document.getElementById("infoGraphicsButton").addEventListener("click", (e) => {
+  createHtml(e.target.id,...infoGraphics);
 });
 
-document.getElementById("printsButton").addEventListener("click", () => {
-  createHtml(...prints);
+document.getElementById("printsButton").addEventListener("click", (e) => {
+  createHtml(e.target.id,...prints);
 });
 
-function createHtml(className, src, countArr) {
-  da = document.getElementById("gallery");
-  da.innerHTML = "";
+function createHtml(id,className, src, countArr) {
+  if(lastClicked!=id){
+  lastClicked = id;
+  activeFilterItem();
+  ga = document.getElementById("gallery");
+  ga.innerHTML = "";
   var gridSizer = document.createElement("Div");
   gridSizer.classList.add("grid-sizer");
   document.getElementById("gallery").appendChild(gridSizer);
@@ -54,7 +59,22 @@ function createHtml(className, src, countArr) {
   }
   initGlightbox();
 }
+}
 
+function activeFilterItem() {
+  filters = document.getElementsByClassName("filter-item");
+  console.log(lastClicked);
+  for (let i = 0; i < filters.length; i++) {
+    if (filters[i].id == lastClicked) {
+      filters[i].style.backgroundColor = "white";
+      filters[i].style.color = "#0e1111";
+    }
+    else{
+      filters[i].style.backgroundColor = "#0e1111";
+      filters[i].style.color = "white";
+    }
+  }
+}
 
 function initGlightbox() {
   const lightbox = GLightbox({

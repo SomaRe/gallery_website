@@ -177,20 +177,18 @@ body {
     .filter-options {
       li {
         display: flex;
-        flex-direction: row;
+        flex-wrap: wrap;
         font-size: 12px;
         justify-content: space-around;
         margin-bottom: 40px;
         list-style: none;
         ul {
-          max-width:30% ;
+          width: 150px;
           cursor: pointer;
-          padding: 0 10px;
+          padding: 5px 10px;
+          margin: 5px 0;
           text-align: center;
-          border-right: 1px solid white;
-          &:last-child{
-            border:0;
-          }
+          border: 1px solid white;
         }
       }
     }
@@ -198,7 +196,7 @@ body {
       .grid-sizer,
       .wrapper {
         width: 24%;
-        margin: 0 0 2% 1%;
+        margin: 0 0 1% 1%;
         .glightbox {
           img {
             width: 100%;
@@ -283,3 +281,4 @@ body {
       }
     }
   }
+
