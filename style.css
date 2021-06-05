@@ -8,7 +8,22 @@
 }
 
 body {
-  background-color: #020b17;
+  color: white;
+  background-color: #0e1111;
+}
+
+body .body-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  min-height: 100vh;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .preloader {
@@ -17,7 +32,7 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  background-color: #020b17;
+  background-color: #0e1111;
   height: 100vh;
   width: 100%;
   -webkit-box-pack: center;
@@ -26,7 +41,7 @@ body {
 }
 
 .preloader img {
-  width: 5%;
+  width: 15vh;
   height: auto;
   -o-object-fit: contain;
      object-fit: contain;
@@ -53,7 +68,6 @@ body {
 
 .section1 {
   padding: 70px 70px 30px 70px;
-  color: white;
 }
 
 .section1 nav {
@@ -157,13 +171,12 @@ body {
 .section1 nav .row-nav a {
   text-decoration: none;
   font-size: 0.8em;
-  color: white;
 }
 
 .section1 .menu-open {
   opacity: 0;
   z-index: 5;
-  background-color: #020b17;
+  background-color: #0e1111;
   padding: 40px;
   margin-right: 20px;
   font-size: 24px;
@@ -186,7 +199,6 @@ body {
   font-weight: 500;
   padding: 15px 0px;
   text-decoration: none;
-  color: white;
   opacity: 0;
   -webkit-transition: margin-right 0.5s ease-in, opacity 0.5s ease-in-out;
   transition: margin-right 0.5s ease-in, opacity 0.5s ease-in-out;
@@ -239,37 +251,63 @@ body {
       -ms-flex-direction: row;
           flex-direction: row;
   font-size: 12px;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  color: white;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
   margin-bottom: 40px;
   list-style: none;
 }
 
 .section2 .filter-options li ul {
-  border-bottom: solid white 1px;
+  max-width: 30%;
   cursor: pointer;
-  margin: 0 10px;
+  padding: 0 10px;
+  text-align: center;
+  border-right: 1px solid white;
 }
 
-.section2 .gallery-container .grid-sizer, .section2 .gallery-container .wrapper {
+.section2 .filter-options li ul:last-child {
+  border: 0;
+}
+
+.section2 .gallery-container .grid-sizer,
+.section2 .gallery-container .wrapper {
   width: 24%;
-  margin: 0 0 20px 1%;
+  margin: 0 0 2% 1%;
 }
 
-.section2 .gallery-container .grid-sizer .glightbox img, .section2 .gallery-container .wrapper .glightbox img {
+.section2 .gallery-container .grid-sizer .glightbox img,
+.section2 .gallery-container .wrapper .glightbox img {
   width: 100%;
   height: auto;
   border-radius: 5%;
 }
 
-.section2 .gallery-container .grid-sizer span, .section2 .gallery-container .wrapper span {
-  display: inline-block;
+.section2 .gallery-container .grid-sizer span,
+.section2 .gallery-container .wrapper span {
+  display: none;
   width: 100%;
-  color: white;
-  font-size: 14px;
+  font-size: 12px;
   text-align: center;
+}
+
+footer .credits {
+  background-color: #e7e7e7;
+  color: #0e1111;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-size: 12px;
+  padding: 5px;
+}
+
+footer .credits a {
+  color: purple;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
 }
 
 @media screen and (max-width: 768px) {
@@ -285,7 +323,8 @@ body {
   .section2 {
     padding: 10px 40px;
   }
-  .section2 .gallery-container .grid-sizer, .section2 .gallery-container .wrapper {
+  .section2 .gallery-container .grid-sizer,
+  .section2 .gallery-container .wrapper {
     width: 32%;
     margin: 0 0 20px 1%;
   }
@@ -304,7 +343,11 @@ body {
   .section2 {
     padding: 10px 20px;
   }
-  .section2 .gallery-container .grid-sizer, .section2 .gallery-container .wrapper {
+  .section2 ul {
+    font-size: 10px;
+  }
+  .section2 .gallery-container .grid-sizer,
+  .section2 .gallery-container .wrapper {
     width: 48%;
     margin: 0 0 20px 2%;
   }

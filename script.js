@@ -33,12 +33,12 @@ AOS.init();
 // });
 
 // LightBox Initialize
-const lightbox = GLightbox({
-  selector: ".glightbox"
-});
 
 
 // isotope Layout
+
+
+
 var grid = document.querySelector('.gallery-container');
 var iso = new Isotope( grid, {
   // options...
@@ -55,11 +55,11 @@ imagesLoaded( grid ).on( 'progress', function() {
 });
 
 
-var filtersElem = document.querySelector('.filter-options');
-filtersElem.addEventListener( 'click', function( event ) {
-  var filterValue = event.target.getAttribute('data-filter');
-  iso.arrange({ filter: filterValue });
-});
+// var filtersElem = document.querySelector('.filter-options');
+// filtersElem.addEventListener( 'click', function( event ) {
+//   var filterValue = event.target.getAttribute('data-filter');
+//   iso.arrange({ filter: filterValue });
+// });
 
 
 //Intersection API
@@ -69,14 +69,14 @@ const options = {
   rootMargin: '0px',
   threshold: 0
 }
-const myObserver = new IntersectionObserver((entries, observer) => {
-  entries.forEach(entry =>{
-    if(entry.isIntersecting){
-      iso.layout();
-    }
-  })
-},options)
-imgList.forEach(img =>{
-  myObserver.observe(img)
-});
+// const myObserver = new IntersectionObserver((entries, observer) => {
+//   entries.forEach(entry =>{
+//     if(entry.isIntersecting){
+//       iso.layout();
+//     }
+//   })
+// },options)
+// imgList.forEach(img =>{
+//   myObserver.observe(img)
+// });
 
