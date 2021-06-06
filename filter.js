@@ -1,104 +1,165 @@
+const preloader = document.querySelector(".preloader");
 var lastClicked = "";
 
-var digitalArts = [
-  "digitalArt",
-  "assets/images/digitalArts/digitalArt-",
-  [[12, ".jpg"]],
-];
-var paperDrawn = [
-  "paperDrawn",
-  "assets/images/paperDrawn/paperDrawn-",
-  [[29, ".jpg"]],
-];
-var featuredImages = [
-  "featuredImage",
-  "assets/images/featured/featured-",
-  [
+var digitalArts = {
+  className: "digitalArt",
+  href: "assets/images/digitalArts/digitalArt-",
+  hrefCountArr: [[13, ".jpg"]],
+  src: "assets/images/digitalArts/digitalArt-",
+  srcCountArr: [[13, ".jpg"]],
+};
+
+var paperDrawn = {
+  className: "paperDrawn",
+  href: "assets/images/paperDrawn/paperDrawn-",
+  hrefCountArr: [[29, ".jpg"]],
+  src: "assets/images/paperDrawn/paperDrawn-",
+  srcCountArr: [[29, ".jpg"]],
+};
+
+var featuredImages = {
+  className: "featuredImage",
+  href:   "assets/images/featured/featured-",
+  hrefCountArr:  [
     [7, ".jpg"],
     [2, ".gif"],
   ],
-];
-var digitalPosters = [
-  "digitalPoster",
-  "assets/images/digitalPosters/digitalPoster-",
-  [[20, ".jpg"]],
-];
-var infoGraphics = [
-  "infoGraphics",
-  "assets/images/infographics/infographics-",
-  [
+  src: "assets/images/featured/featured-",
+  srcCountArr:  [
+    [7, ".jpg"],
+    [2, ".gif"],
+  ],
+};
+var digitalPosters = {
+  className:  "digitalPoster",
+  href:   "assets/images/digitalPosters/digitalPoster-",
+  hrefCountArr:   [[20, ".jpg"]],
+  src:   "assets/images/digitalPosters/digitalPoster-",
+  srcCountArr:   [[20, ".jpg"]],
+};
+
+var infoGraphics = {
+  classNme:"infoGraphics",
+  href:"assets/images/infographics/infographics-",
+  hrefCountArr:[
     [3, ".jpg"],
     [1, ".gif"],
   ],
-];
-var prints = [
-  "print",
-  "assets/images/prints/print-",
-  [
-    [14, ".jpg"],
-    [2, ".png"],
+  src:"assets/images/infographics/infographics-",
+  srcCountArr:[
+    [3, ".jpg"],
+    [1, ".gif"],
   ],
-];
+};
+
+var prints = {
+  className: "print",
+  href:"assets/images/prints/print-",
+  hrefCountArr:[
+    [14, ".jpg"],
+    [3, ".png"],
+  ],
+  src:"assets/images/prints/print-",
+  srcCountArr:[
+    [14, ".jpg"],
+    [3, ".png"],
+  ],
+};
+
+var printMedias = {
+  className:"printMedia",
+  href:"assets/images/printMedias/printMedia-",
+  hrefCountArr:[[6, ".pdf"]],
+  src:"assets/images/printMedias/printMedia-",
+  srcCountArr:[[6, ".png"]],
+};
 
 document.getElementById("digitalArtsButton").addEventListener("click", (e) => {
-  createHtml(e.target.id, ...digitalArts);
+  createHtml(e.target.id, digitalArts);
 });
 
 document.getElementById("paperDrawnButton").addEventListener("click", (e) => {
-  createHtml(e.target.id, ...paperDrawn);
+  createHtml(e.target.id, paperDrawn);
 });
 
 document
   .getElementById("featuredImagesButton")
   .addEventListener("click", (e) => {
-    createHtml(e.target.id, ...featuredImages);
+    createHtml(e.target.id, featuredImages);
   });
 
 document
   .getElementById("digitalPostersButton")
   .addEventListener("click", (e) => {
-    createHtml(e.target.id, ...digitalPosters);
+    createHtml(e.target.id, digitalPosters);
   });
 
 document.getElementById("infoGraphicsButton").addEventListener("click", (e) => {
-  createHtml(e.target.id, ...infoGraphics);
+  createHtml(e.target.id, infoGraphics);
 });
 
 document.getElementById("printsButton").addEventListener("click", (e) => {
-  createHtml(e.target.id, ...prints);
+  createHtml(e.target.id, prints);
 });
 
-function createHtml(id, className, src, countArr) {
+document.getElementById("printMediasButton").addEventListener("click", (e) => {
+  createHtml(e.target.id, printMedias);
+});
+
+function createHtml(id, obj) {
   if (lastClicked != id) {
     lastClicked = id;
     activeFilterItem();
-    ga = document.getElementById("gallery");
-    ga.innerHTML = "";
+
+    preloader.style.display = "flex";
+    preloader.classList.remove("vanish");
+
+    document.getElementById("gallery").style.display = "none";
+    document.getElementById("gallery").innerHTML = "";
+
     var gridSizer = document.createElement("Div");
     gridSizer.classList.add("grid-sizer");
     document.getElementById("gallery").appendChild(gridSizer);
-    for (let j = 0; j < countArr.length; j++) {
-      for (let i = 1; i < countArr[j][0] + 1; i++) {
+
+    for (let j = 0; j < obj.srcCountArr.length; j++) {
+      for (let i = 1; i < obj.srcCountArr[j][0] + 1; i++) {
         var imgBox = document.createElement("Div");
-        imgBox.classList.add("wrapper", className);
+        imgBox.classList.add("wrapper", obj.className);
         document.getElementById("gallery").appendChild(imgBox);
+
         var link = document.createElement("a");
         link.classList.add("glightbox");
-        link.href = src + i + countArr[j][1];
+        link.href = obj.href + i + obj.hrefCountArr[j][1];
         imgBox.appendChild(link);
+
         var imgTag = document.createElement("img");
-        imgTag.src = src + i + countArr[j][1];
+        imgTag.src = obj.src + i + obj.srcCountArr[j][1];
         link.appendChild(imgTag);
-        runistopeLayout();
       }
     }
     initGlightbox();
+
+    Promise.all(
+      Array.from(document.images).map((img) => {
+        if (img.complete) return Promise.resolve(img.naturalHeight !== 0);
+        return new Promise((resolve) => {
+          img.addEventListener("load", () => resolve(true));
+          img.addEventListener("error", () => resolve(false));
+        });
+      })
+    ).then((results) => {
+      if (results.every((res) => res)) {
+        document.getElementById("gallery").style.display = "block";
+        preloader.classList.add("vanish");
+        runistopeLayout();
+        console.log("all images loaded successfully");
+      } else console.log("some images failed to load, all finished loading");
+    });
   }
 }
 
 function activeFilterItem() {
   filters = document.getElementsByClassName("filter-item");
-  console.log(lastClicked);
   for (let i = 0; i < filters.length; i++) {
     if (filters[i].id == lastClicked) {
       filters[i].style.backgroundColor = "white";
@@ -130,12 +191,4 @@ function runistopeLayout() {
     // layout Isotope after each image loads
     iso.layout();
   });
-}
-
-function sleep(milliseconds) {
-  const date = Date.now();
-  let currentDate = null;
-  do {
-    currentDate = Date.now();
-  } while (currentDate - date < milliseconds);
 }

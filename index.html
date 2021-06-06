@@ -12,6 +12,10 @@
       property="og:image"
       content="https://somare.github.io/gallery_website/assets/ogCover.png"
     />
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="assets/favicon_io/site.webmanifest">
     <title>Portfolio</title>
 
     <!-- vendor -->
@@ -23,24 +27,19 @@
   </head>
   <body>
     <div class="body-wrapper">
-      <div class="preloader">
-        <img loading="lazy" src="assets/loader.gif" alt="" />
+      <div class="preloader vanish">
+        <img src="assets/loader.gif" alt="" />
       </div>
 
       <div class="section section1">
         <nav
           class="navbar"
-          data-aos="fade-up"
-          data-aos-delay="1000"
+          data-aos="zoom-in"
+          data-aos-delay="500"
           data-aos-duration="1000"
         >
           <div class="row-nav">
-            <div
-              class="col title"
-              data-aos="fade-up"
-              data-aos-delay="500"
-              data-aos-duration="1000"
-            >
+            <div>
               <h2>Vadso.Art</h2>
             </div>
             <!-- <div class="menu-btn">
@@ -60,8 +59,8 @@
       <div class="section2">
         <div
           class="filter-options"
-          data-aos="fade-up"
-          data-aos-delay="1250"
+          data-aos="zoom-in"
+          data-aos-delay="750"
           data-aos-duration="1000"
         >
           <li>
@@ -83,12 +82,13 @@
             <ul id="printsButton" class="filter-item">
               Prints
             </ul>
-            <ul id="printMedia" class="filter-item">
+            <ul id="printMediasButton" class="filter-item">
               Print media
             </ul>
           </li>
         </div>
         <div id="gallery" class="gallery-container">
+          
           <!-- <div class="wrapper digital-art"  >
             <a href='assets/images/weeknd2.png' class="glightbox">
               <img loading="lazy" src="assets/images/weeknd2.png" >
@@ -98,7 +98,11 @@
       </div>
 
       <footer>
-        <div class="credits">
+        <div class="credits"  
+        data-aos="zoom-in"
+        data-aos-offset="-100"
+        data-aos-delay="1000"
+        data-aos-duration="1000">
           <p>
             Designed by
             <a target="_blank" href="https://www.linkedin.com/in/shivatej-soma"
