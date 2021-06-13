@@ -69,9 +69,9 @@ var prints = {
 var printMedias = {
   className:"printMedia",
   href:"assets/images/printMedias/printMedia-",
-  hrefCountArr:[[6, ".pdf"]],
+  hrefCountArr:[[5, ".pdf"]],
   src:"assets/images/printMedias/printMedia-",
-  srcCountArr:[[6, ".png"]],
+  srcCountArr:[[5, ".png"]],
 };
 
 document.getElementById("digitalArtsButton").addEventListener("click", (e) => {
